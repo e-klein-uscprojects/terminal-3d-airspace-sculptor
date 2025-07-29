@@ -19,10 +19,12 @@
   <body>
     <div id="cesiumContainer"></div>
     <script>
-      Cesium.Ion.defaultAccessToken = ''; // Leave blank unless using Ion assets
+      Cesium.Ion.defaultAccessToken = '';
 
       const viewer = new Cesium.Viewer('cesiumContainer', {
         terrainProvider: Cesium.createWorldTerrain(),
+        imageryProvider: new Cesium.OpenStreetMapImageryProvider(),
+        baseLayerPicker: false,
         shouldAnimate: true,
         timeline: false,
         animation: false
