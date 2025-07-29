@@ -4,22 +4,27 @@
     <meta charset="utf-8" />
     <title>Terminal 3D Airspace Sculptor</title>
     <script type="module">
-      import { Viewer, Ion, Cartesian3, Math as CesiumMath } from "https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Cesium.js";
-      import { createWorldTerrainAsync } from "https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Cesium.js";
+      import {
+        Viewer,
+        Ion,
+        Cartesian3,
+        Math as CesiumMath,
+        createWorldTerrainAsync
+      } from "https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Cesium.js";
 
-      Ion.defaultAccessToken = ''; // Optional: add your token if needed
+      Ion.defaultAccessToken = ""; // Leave blank unless you use Cesium Ion
 
       const viewer = new Viewer("cesiumContainer", {
-        shouldAnimate: true,
-        timeline: false,
+        baseLayerPicker: false,
         animation: false,
-        baseLayerPicker: false
+        timeline: false,
+        shouldAnimate: true
       });
 
       const terrainProvider = await createWorldTerrainAsync();
       viewer.terrainProvider = terrainProvider;
 
-      const airspaceEntity = viewer.entities.add({
+      const modelEntity = viewer.entities.add({
         name: "Airspace Model",
         position: Cartesian3.fromDegrees(-118.4085, 33.9416, 100),
         model: {
@@ -30,20 +35,25 @@
         }
       });
 
-      viewer.trackedEntity = airspaceEntity;
+      viewer.trackedEntity = modelEntity;
 
       viewer.camera.flyTo({
         destination: Cartesian3.fromDegrees(-118.4085, 33.9416, 1000),
         orientation: {
           heading: CesiumMath.toRadians(0),
-          pitch: CesiumMath.toRadians(-25),
-          roll: 0
+          pitch: CesiumMath.toRadians(-30),
+          roll: 0.0
         }
       });
     </script>
-    <link href="https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
+    <link
+      href="https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Widgets/widgets.css"
+      rel="stylesheet"
+    />
     <style>
-      html, body, #cesiumContainer {
+      html,
+      body,
+      #cesiumContainer {
         width: 100%;
         height: 100%;
         margin: 0;
@@ -57,3 +67,4 @@
     <div id="cesiumContainer"></div>
   </body>
 </html>
+
