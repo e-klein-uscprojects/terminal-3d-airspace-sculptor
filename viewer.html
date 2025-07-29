@@ -3,7 +3,44 @@
   <head>
     <meta charset="utf-8" />
     <title>Terminal 3D Airspace Sculptor</title>
-    <script src="https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Cesium.js"></script>
+    <script type="module">
+      import { Viewer, Ion, Cartesian3, Math as CesiumMath } from "https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Cesium.js";
+      import { createWorldTerrainAsync } from "https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Cesium.js";
+
+      Ion.defaultAccessToken = ''; // Optional: add your token if needed
+
+      const viewer = new Viewer("cesiumContainer", {
+        shouldAnimate: true,
+        timeline: false,
+        animation: false,
+        baseLayerPicker: false
+      });
+
+      const terrainProvider = await createWorldTerrainAsync();
+      viewer.terrainProvider = terrainProvider;
+
+      const airspaceEntity = viewer.entities.add({
+        name: "Airspace Model",
+        position: Cartesian3.fromDegrees(-118.4085, 33.9416, 100),
+        model: {
+          uri: "https://e-klein-uscprojects.github.io/terminal-3d-airspace-sculptor/airspace.glb",
+          scale: 1.0,
+          minimumPixelSize: 128,
+          maximumScale: 2000
+        }
+      });
+
+      viewer.trackedEntity = airspaceEntity;
+
+      viewer.camera.flyTo({
+        destination: Cartesian3.fromDegrees(-118.4085, 33.9416, 1000),
+        orientation: {
+          heading: CesiumMath.toRadians(0),
+          pitch: CesiumMath.toRadians(-25),
+          roll: 0
+        }
+      });
+    </script>
     <link href="https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
     <style>
       html, body, #cesiumContainer {
@@ -18,40 +55,5 @@
   </head>
   <body>
     <div id="cesiumContainer"></div>
-    <script>
-      Cesium.Ion.defaultAccessToken = '';
-
-      const viewer = new Cesium.Viewer('cesiumContainer', {
-        terrainProvider: Cesium.createWorldTerrain(),
-        imageryProvider: new Cesium.OpenStreetMapImageryProvider(),
-        baseLayerPicker: false,
-        shouldAnimate: true,
-        timeline: false,
-        animation: false
-      });
-
-      const airspaceEntity = viewer.entities.add({
-        name: "Airspace Model",
-        position: Cesium.Cartesian3.fromDegrees(-118.4085, 33.9416, 100),
-        model: {
-          uri: "https://e-klein-uscprojects.github.io/terminal-3d-airspace-sculptor/airspace.glb",
-          scale: 1.0,
-          minimumPixelSize: 128,
-          maximumScale: 2000
-        }
-      });
-
-      viewer.trackedEntity = airspaceEntity;
-
-      viewer.camera.flyTo({
-        destination: Cesium.Cartesian3.fromDegrees(-118.4085, 33.9416, 1000),
-        orientation: {
-          heading: Cesium.Math.toRadians(0),
-          pitch: Cesium.Math.toRadians(-25),
-          roll: 0
-        }
-      });
-    </script>
   </body>
 </html>
-
