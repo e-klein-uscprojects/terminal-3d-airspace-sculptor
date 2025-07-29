@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3D Airspace Viewer</title>
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.114/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.114/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <style>
+    html, body, #cesiumContainer {
+      height: 100%; margin: 0; padding: 0; overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div id="cesiumContainer"></div>
+  <script>
+    Cesium.Ion.defaultAccessToken = ""; // Optional: Use Ion services if needed
+    const viewer = new Cesium.Viewer("cesiumContainer", {
+      terrainProvider: Cesium.createWorldTerrain(),
+      shouldAnimate: true
+    });
+
+    // 🔹 Replace this with the URL to your hosted .json or .glb model
+    const modelUrl = "https://yourusername.github.io/yourrepo/data/airspace.glb";
+
+    const entity = viewer.entities.add({
+      name: "Airspace Model",
+      position: Cesium.Cartesian3.fromDegrees(-122.37, 37.62, 100),
+      model: {
+        uri: modelUrl,
+        scale: 1.0,
+        minimumPixelSize: 128,
+        maximumScale: 20000
+      }
+    });
+
+    viewer.zoomTo(entity);
+  </script>
+</body>
+</html>
