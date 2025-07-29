@@ -7,7 +7,11 @@
     <link href="https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
     <style>
       html, body, #cesiumContainer {
-        width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
         font-family: sans-serif;
       }
     </style>
@@ -15,31 +19,34 @@
   <body>
     <div id="cesiumContainer"></div>
     <script>
-      Cesium.Ion.defaultAccessToken = ''; // Leave blank unless you use Ion assets
+      Cesium.Ion.defaultAccessToken = ''; // Leave blank unless using Ion assets
 
       const viewer = new Cesium.Viewer('cesiumContainer', {
         terrainProvider: Cesium.createWorldTerrain(),
-        shouldAnimate: true
+        shouldAnimate: true,
+        timeline: false,
+        animation: false
       });
 
-      const modelUrl = 'https://e-klein-uscprojects.github.io/terminal-3d-airspace-sculptor/airspace.glb';
+      const airspaceEntity = viewer.entities.add({
+        name: "Airspace Model",
+        position: Cesium.Cartesian3.fromDegrees(-118.4085, 33.9416, 100),
+        model: {
+          uri: "airspace.glb",
+          scale: 1.0,
+          minimumPixelSize: 128,
+          maximumScale: 2000
+        }
+      });
 
-      viewer.scene.primitives.add(
-        Cesium.Model.fromGltf({
-          url: modelUrl,
-          modelMatrix: Cesium.Transforms.eastNorthUpToFixedFrame(
-            Cesium.Cartesian3.fromDegrees(-118.4085, 33.9416, 100)
-          ),
-          scale: 1.0
-        })
-      );
+      viewer.trackedEntity = airspaceEntity;
 
       viewer.camera.flyTo({
         destination: Cesium.Cartesian3.fromDegrees(-118.4085, 33.9416, 1000),
         orientation: {
           heading: Cesium.Math.toRadians(0),
-          pitch: Cesium.Math.toRadians(-30),
-          roll: 0.0
+          pitch: Cesium.Math.toRadians(-25),
+          roll: 0
         }
       });
     </script>
