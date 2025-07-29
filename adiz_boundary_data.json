@@ -1,0 +1,12 @@
+{
+  "zone_name": "ADIZ",
+  "altitude_floor": 0,
+  "altitude_ceiling": 100,
+  "priority": 1,
+  "vertices": [
+    [0, 0],
+    [0, 100],
+    [100, 100],
+    [100, 0]
+  ]
+}
