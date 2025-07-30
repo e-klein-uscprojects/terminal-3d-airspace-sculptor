@@ -3,7 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <title>Terminal 3D Airspace Sculptor</title>
+
+  <!-- Cesium default widget styles -->
   <link href="https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+
   <style>
     html, body {
       margin: 0;
@@ -17,8 +20,8 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
       background: #000;
       font-family: monospace;
       z-index: 0;
@@ -37,15 +40,6 @@
       padding: 10px;
       z-index: 99;
       font-family: monospace;
-    }
-
-    /* Hide default widgets */
-    .cesium-viewer-toolbar,
-    .cesium-viewer-bottom,
-    .cesium-viewer-timelineContainer,
-    .cesium-viewer-animationContainer,
-    .cesium-widget-credits {
-      display: none !important;
     }
   </style>
 </head>
@@ -66,6 +60,7 @@
     (async function initViewer() {
       try {
         log("Cesium module loaded.");
+
         Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1NzBmN2Y0MS1iMmJkLTQ5Y2ItOWI5Yi0xZGMwMWE1ZTRjMGUiLCJpZCI6MzI2Nzk0LCJpYXQiOjE3NTM4MzY3NTJ9.Camux9d9YjymZQ800oLDd0cz2djqMl6lXk7IMC_7D6c";
 
         const terrainProvider = await Cesium.createWorldTerrainAsync();
@@ -75,19 +70,20 @@
           terrainProvider,
           sceneMode: Cesium.SceneMode.SCENE3D,
           shouldAnimate: true,
-          timeline: false,
-          animation: false,
-          baseLayerPicker: false,
-          fullscreenButton: false,
-          homeButton: false,
-          sceneModePicker: false,
-          navigationHelpButton: false,
-          geocoder: false,
-          infoBox: false,
-          selectionIndicator: false,
-          vrButton: false
+          timeline: true,
+          animation: true,
+          baseLayerPicker: true,
+          fullscreenButton: true,
+          homeButton: true,
+          sceneModePicker: true,
+          navigationHelpButton: true,
+          geocoder: true,
+          infoBox: true,
+          selectionIndicator: true,
+          vrButton: true
         });
 
+        // Make sure viewer container fills screen
         viewer.container.style.position = "absolute";
         viewer.container.style.top = "0";
         viewer.container.style.left = "0";
