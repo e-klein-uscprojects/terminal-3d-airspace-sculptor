@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Cesium Airspace Viewer</title>
+    <title>Battle-Tested Cesium Viewer</title>
     <script src="https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Cesium.js"></script>
     <link href="https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
     <style>
@@ -12,50 +12,120 @@
         margin: 0;
         padding: 0;
         overflow: hidden;
+        background-color: #000;
+        color: #fff;
+        font-family: monospace;
+      }
+      #statusLog {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 10;
+        background: rgba(0,0,0,0.5);
+        padding: 10px;
+        font-size: 12px;
+        max-width: 400px;
+        border: 1px solid #444;
+        border-radius: 4px;
       }
     </style>
   </head>
   <body>
     <div id="cesiumContainer"></div>
+    <div id="statusLog">Initializing viewer...</div>
     <script type="module">
-      console.log("Cesium viewer initializing...");
+      const log = (msg, isError = false) => {
+        console.log(msg);
+        const status = document.getElementById("statusLog");
+        status.innerHTML += "<br>" + (isError ? "❌ " : "✅ ") + msg;
+      };
 
-      const terrainProvider = await Cesium.createWorldTerrainAsync();
-
-      const viewer = new Cesium.Viewer("cesiumContainer", {
-        terrainProvider,
-        sceneMode: Cesium.SceneMode.SCENE3D,
-        shouldAnimate: true
-      });
-
-      viewer.scene.globe.enableLighting = true;
-
-      console.log("Viewer created. Flying to LAX...");
-
-      viewer.camera.flyTo({
-        destination: Cesium.Cartesian3.fromDegrees(-118.4085, 33.9416, 3000),
-        orientation: {
-          heading: Cesium.Math.toRadians(0),
-          pitch: Cesium.Math.toRadians(-30),
-          roll: 0.0
+      try {
+        // Sanity check: Is Cesium available?
+        if (!Cesium || !Cesium.Viewer) {
+          throw new Error("Cesium Viewer is not available.");
         }
-      });
+        log("Cesium.js loaded.");
 
-      const glbModelUrl = "airspace.glb";
-      console.log("Attempting to load model:", glbModelUrl);
+        const terrainProvider = await Cesium.createWorldTerrainAsync();
+        log("Terrain provider loaded.");
 
-      Cesium.Model.fromGltfAsync({
-        url: glbModelUrl,
-        modelMatrix: Cesium.Transforms.eastNorthUpToFixedFrame(
-          Cesium.Cartesian3.fromDegrees(-118.4085, 33.9416, 1000)
-        ),
-        scale: 1.0,
-      }).then(model => {
-        console.log("✅ Model loaded successfully.");
-        viewer.scene.primitives.add(model);
-      }).catch(error => {
-        console.error("❌ Failed to load GLB model:", error);
-      });
+        const viewer = new Cesium.Viewer("cesiumContainer", {
+          terrainProvider,
+          sceneMode: Cesium.SceneMode.SCENE3D,
+          shouldAnimate: true
+        });
+        log("Viewer initialized.");
+
+        viewer.scene.globe.enableLighting = true;
+
+        viewer.camera.flyTo({
+          destination: Cesium.Cartesian3.fromDegrees(-118.4085, 33.9416, 3000),
+          orientation: {
+            heading: Cesium.Math.toRadians(0),
+            pitch: Cesium.Math.toRadians(-30),
+            roll: 0.0
+          }
+        });
+        log("Camera set to LAX.");
+
+        const glbModelUrl = "airspace.glb";
+        log("Trying to load model: " + glbModelUrl);
+
+        // Retry logic if model fails
+        let retries = 2;
+        let modelLoaded = false;
+
+        async function tryLoadModel(attempt = 1) {
+          try {
+            const model = await Cesium.Model.fromGltfAsync({
+              url: glbModelUrl,
+              modelMatrix: Cesium.Transforms.eastNorthUpToFixedFrame(
+                Cesium.Cartesian3.fromDegrees(-118.4085, 33.9416, 1000)
+              ),
+              scale: 1.0,
+            });
+
+            viewer.scene.primitives.add(model);
+            log(`Model loaded on attempt #${attempt}`);
+            modelLoaded = true;
+
+          } catch (error) {
+            log(`Attempt #${attempt} failed to load GLB. Reason: ${error.message}`, true);
+            if (attempt < retries) {
+              log("Retrying...");
+              await tryLoadModel(attempt + 1);
+            } else {
+              log("Failed to load model after retries.", true);
+              log("Displaying fallback instead.");
+              loadFallbackModel();
+            }
+          }
+        }
+
+        async function loadFallbackModel() {
+          const fallbackURL = "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/CesiumMan/glTF-Binary/CesiumMan.glb";
+          try {
+            const fallbackModel = await Cesium.Model.fromGltfAsync({
+              url: fallbackURL,
+              modelMatrix: Cesium.Transforms.eastNorthUpToFixedFrame(
+                Cesium.Cartesian3.fromDegrees(-118.4085, 33.9416, 1000)
+              ),
+              scale: 1.0,
+            });
+            viewer.scene.primitives.add(fallbackModel);
+            log("Fallback GLB loaded.");
+          } catch (error) {
+            log("Fallback model also failed: " + error.message, true);
+          }
+        }
+
+        await tryLoadModel();
+
+      } catch (err) {
+        log("Critical failure: " + err.message, true);
+        document.body.style.background = "#300";
+      }
     </script>
   </body>
 </html>
