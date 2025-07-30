@@ -30,6 +30,8 @@
 
       viewer.scene.globe.enableLighting = true;
 
+      console.log("Viewer created. Flying to LAX...");
+
       viewer.camera.flyTo({
         destination: Cesium.Cartesian3.fromDegrees(-118.4085, 33.9416, 3000),
         orientation: {
@@ -40,6 +42,7 @@
       });
 
       const glbModelUrl = "airspace.glb";
+      console.log("Attempting to load model:", glbModelUrl);
 
       Cesium.Model.fromGltfAsync({
         url: glbModelUrl,
@@ -48,12 +51,11 @@
         ),
         scale: 1.0,
       }).then(model => {
-        console.log("Model loaded successfully.");
+        console.log("✅ Model loaded successfully.");
         viewer.scene.primitives.add(model);
       }).catch(error => {
-        console.error("Failed to load GLB:", error);
+        console.error("❌ Failed to load GLB model:", error);
       });
     </script>
   </body>
 </html>
-
