@@ -2,66 +2,47 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Terminal 3D Airspace Sculptor</title>
-    <link
-      href="https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Widgets/widgets.css"
-      rel="stylesheet"
-    />
+    <title>Cesium Airspace Viewer</title>
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
     <style>
       html, body, #cesiumContainer {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
+        width: 100%; height: 100%; margin: 0; padding: 0;
         overflow: hidden;
-        font-family: sans-serif;
       }
     </style>
   </head>
   <body>
     <div id="cesiumContainer"></div>
-    <script type="module">
-      import {
-        Viewer,
-        Ion,
-        Cartesian3,
-        Math as CesiumMath,
-        createWorldTerrainAsync
-      } from "https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Cesium.js";
-
-      Ion.defaultAccessToken = ""; // Leave blank unless using Cesium Ion
-
-      const viewer = new Viewer("cesiumContainer", {
-        baseLayerPicker: false,
-        animation: false,
-        timeline: false,
+    <script>
+      const viewer = new Cesium.Viewer("cesiumContainer", {
+        terrainProvider: Cesium.createWorldTerrain(),
+        sceneMode: Cesium.SceneMode.SCENE3D,
         shouldAnimate: true
       });
 
-      const terrainProvider = await createWorldTerrainAsync();
-      viewer.terrainProvider = terrainProvider;
-
-      const modelEntity = viewer.entities.add({
-        name: "Airspace Model",
-        position: Cartesian3.fromDegrees(-118.4085, 33.9416, 100),
-        model: {
-          uri: "./airspace.glb", // Local file in your repo
-          scale: 1.0,
-          minimumPixelSize: 128,
-          maximumScale: 2000
-        }
-      });
-
-      viewer.trackedEntity = modelEntity;
+      viewer.scene.globe.enableLighting = true;
 
       viewer.camera.flyTo({
-        destination: Cartesian3.fromDegrees(-118.4085, 33.9416, 1000),
+        destination: Cesium.Cartesian3.fromDegrees(-118.4085, 33.9416, 3000),
         orientation: {
-          heading: CesiumMath.toRadians(0),
-          pitch: CesiumMath.toRadians(-30),
+          heading: Cesium.Math.toRadians(0),
+          pitch: Cesium.Math.toRadians(-30),
           roll: 0.0
         }
       });
+
+      const glbModelUrl = "airspace.glb"; // Make sure this file is in the same folder
+
+      viewer.scene.primitives.add(
+        await Cesium.Model.fromGltfAsync({
+          url: glbModelUrl,
+          modelMatrix: Cesium.Transforms.eastNorthUpToFixedFrame(
+            Cesium.Cartesian3.fromDegrees(-118.4085, 33.9416, 1000)
+          ),
+          scale: 1.0,
+        })
+      );
     </script>
   </body>
 </html>
