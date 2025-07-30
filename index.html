@@ -4,18 +4,24 @@
   <meta charset="utf-8" />
   <title>Terminal 3D Airspace Sculptor</title>
   <style>
-    html, body, #cesiumContainer {
-      width: 100%;
-      height: 100%;
+    html, body {
       margin: 0;
       padding: 0;
+      height: 100vh;
+      width: 100vw;
       overflow: hidden;
-      position: absolute;
+      background: #000;
+      font-family: monospace;
+    }
+
+    #cesiumContainer {
+      position: fixed;
       top: 0;
       left: 0;
-      font-family: monospace;
-      background: #000;
+      width: 100vw;
+      height: 100vh;
     }
+
     #statusLog {
       position: absolute;
       top: 10px;
@@ -28,6 +34,7 @@
       border-radius: 4px;
       padding: 10px;
       z-index: 999;
+      font-family: monospace;
     }
   </style>
 </head>
@@ -115,3 +122,4 @@
   </script>
 </body>
 </html>
+
