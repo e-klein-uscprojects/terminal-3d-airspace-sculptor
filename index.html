@@ -45,7 +45,8 @@
     (async function initViewer() {
       try {
         log("Cesium module loaded.");
-        Cesium.Ion.defaultAccessToken = "YOUR_ACCESS_TOKEN_HERE";
+
+        Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1NzBmN2Y0MS1iMmJkLTQ5Y2ItOWI5Yi0xZGMwMWE1ZTRjMGUiLCJpZCI6MzI2Nzk0LCJpYXQiOjE3NTM4MzY3NTJ9.Camux9d9YjymZQ800oLDd0cz2djqMl6lXk7IMC_7D6c";
 
         const terrainProvider = await Cesium.createWorldTerrainAsync();
         log("World terrain loaded.");
