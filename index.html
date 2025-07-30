@@ -3,7 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <title>Terminal 3D Airspace Sculptor</title>
+
   <style>
+    /* Import Cesium widget styles and override unwanted UI */
+    @import url("https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Widgets/widgets.css");
+
+    .cesium-viewer-toolbar,
+    .cesium-viewer-animationContainer,
+    .cesium-viewer-timelineContainer,
+    .cesium-viewer-bottom {
+      display: none !important;
+    }
+
     html, body {
       margin: 0;
       padding: 0;
@@ -134,5 +145,6 @@
   </script>
 </body>
 </html>
+
 
 
