@@ -17,11 +17,13 @@
   </head>
   <body>
     <div id="cesiumContainer"></div>
-    <script>
+    <script type="module">
       console.log("Cesium viewer initializing...");
 
+      const terrainProvider = await Cesium.createWorldTerrainAsync();
+
       const viewer = new Cesium.Viewer("cesiumContainer", {
-        terrainProvider: Cesium.createWorldTerrain(),
+        terrainProvider,
         sceneMode: Cesium.SceneMode.SCENE3D,
         shouldAnimate: true
       });
