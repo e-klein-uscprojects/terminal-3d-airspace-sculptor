@@ -3,10 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <title>Terminal 3D Airspace Sculptor</title>
-
-  <!-- Cesium CSS for viewer -->
   <link href="https://cesium.com/downloads/cesiumjs/releases/1.113/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
-
   <style>
     html, body {
       margin: 0;
@@ -20,11 +17,11 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      background-color: #000;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
       font-family: monospace;
+      z-index: 0;
     }
 
     #statusLog {
@@ -38,15 +35,15 @@
       border: 1px solid #444;
       border-radius: 4px;
       padding: 10px;
-      z-index: 999;
+      z-index: 99;
       font-family: monospace;
     }
 
-    /* HIDE default Cesium UI widgets */
+    /* Hide default widgets */
     .cesium-viewer-toolbar,
-    .cesium-viewer-animationContainer,
-    .cesium-viewer-timelineContainer,
     .cesium-viewer-bottom,
+    .cesium-viewer-timelineContainer,
+    .cesium-viewer-animationContainer,
     .cesium-widget-credits {
       display: none !important;
     }
@@ -69,7 +66,6 @@
     (async function initViewer() {
       try {
         log("Cesium module loaded.");
-
         Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1NzBmN2Y0MS1iMmJkLTQ5Y2ItOWI5Yi0xZGMwMWE1ZTRjMGUiLCJpZCI6MzI2Nzk0LCJpYXQiOjE3NTM4MzY3NTJ9.Camux9d9YjymZQ800oLDd0cz2djqMl6lXk7IMC_7D6c";
 
         const terrainProvider = await Cesium.createWorldTerrainAsync();
@@ -92,6 +88,12 @@
           vrButton: false
         });
 
+        viewer.container.style.position = "absolute";
+        viewer.container.style.top = "0";
+        viewer.container.style.left = "0";
+        viewer.container.style.width = "100vw";
+        viewer.container.style.height = "100vh";
+
         log("Viewer instantiated.");
         viewer.scene.globe.enableLighting = true;
 
@@ -101,10 +103,12 @@
             heading: Cesium.Math.toRadians(0),
             pitch: Cesium.Math.toRadians(-30),
             roll: 0.0
+          },
+          complete: () => {
+            viewer.scene.requestRender();
+            log("Camera fly-to complete.");
           }
         });
-
-        log("Camera flying to LAX coordinates.");
 
         const glbUrl = "airspace.glb";
         let retries = 2;
@@ -112,15 +116,13 @@
         const loadModel = async (url, fallback = false) => {
           const label = fallback ? "Fallback" : "Primary";
           log(`${label} model loading: ${url}`);
-
           const model = await Cesium.Model.fromGltfAsync({
             url,
             modelMatrix: Cesium.Transforms.eastNorthUpToFixedFrame(
               Cesium.Cartesian3.fromDegrees(-118.4085, 33.9416, 1000)
             ),
-            scale: 1.0,
+            scale: 1.0
           });
-
           viewer.scene.primitives.add(model);
           log(`${label} model successfully loaded.`);
         };
