@@ -65,7 +65,18 @@
         const viewer = new Cesium.Viewer("cesiumContainer", {
           terrainProvider,
           sceneMode: Cesium.SceneMode.SCENE3D,
-          shouldAnimate: true
+          shouldAnimate: true,
+          timeline: false,
+          animation: false,
+          baseLayerPicker: false,
+          fullscreenButton: false,
+          homeButton: false,
+          sceneModePicker: false,
+          navigationHelpButton: false,
+          geocoder: false,
+          infoBox: false,
+          selectionIndicator: false,
+          vrButton: false
         });
 
         log("Viewer instantiated.");
@@ -123,4 +134,5 @@
   </script>
 </body>
 </html>
+
 
