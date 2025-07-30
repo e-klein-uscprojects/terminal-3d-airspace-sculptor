@@ -15,6 +15,8 @@
   <body>
     <div id="cesiumContainer"></div>
     <script>
+      console.log("Initializing Cesium viewer...");
+
       const viewer = new Cesium.Viewer("cesiumContainer", {
         terrainProvider: Cesium.createWorldTerrain(),
         sceneMode: Cesium.SceneMode.SCENE3D,
@@ -32,17 +34,20 @@
         }
       });
 
-      const glbModelUrl = "airspace.glb"; // Make sure this file is in the same folder
+      const glbModelUrl = "airspace.glb";
 
-      viewer.scene.primitives.add(
-        await Cesium.Model.fromGltfAsync({
-          url: glbModelUrl,
-          modelMatrix: Cesium.Transforms.eastNorthUpToFixedFrame(
-            Cesium.Cartesian3.fromDegrees(-118.4085, 33.9416, 1000)
-          ),
-          scale: 1.0,
-        })
-      );
+      Cesium.Model.fromGltfAsync({
+        url: glbModelUrl,
+        modelMatrix: Cesium.Transforms.eastNorthUpToFixedFrame(
+          Cesium.Cartesian3.fromDegrees(-118.4085, 33.9416, 1000)
+        ),
+        scale: 1.0,
+      }).then(model => {
+        console.log("GLB model loaded successfully.");
+        viewer.scene.primitives.add(model);
+      }).catch(error => {
+        console.error("Failed to load GLB model:", error);
+      });
     </script>
   </body>
 </html>
