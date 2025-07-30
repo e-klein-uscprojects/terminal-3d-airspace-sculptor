@@ -7,11 +7,9 @@
     html, body {
       margin: 0;
       padding: 0;
-      height: 100vh;
       width: 100vw;
+      height: 100vh;
       overflow: hidden;
-      background: #000;
-      font-family: monospace;
     }
 
     #cesiumContainer {
@@ -20,6 +18,9 @@
       left: 0;
       width: 100vw;
       height: 100vh;
+      z-index: 1;
+      background: #000;
+      font-family: monospace;
     }
 
     #statusLog {
@@ -33,7 +34,7 @@
       border: 1px solid #444;
       border-radius: 4px;
       padding: 10px;
-      z-index: 999;
+      z-index: 2;
       font-family: monospace;
     }
   </style>
