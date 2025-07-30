@@ -7,3 +7,5 @@ The Terminal 3D Airspace Sculptor models controlled airspace volumes and termina
 Drawing on my experience as a commercial and agricultural pilot, my work in defense applications at Oracle, and my procedural data modeling for Maxar Technologies, this initiative aligns core geospatial expertise with the mission-critical requirements of aerospace safety and precision. My academic background in Communication Analytics from USC has enabled me to integrate sentiment, terrain, and system-level analytics to optimize operational decision-making.
 
 Each module in this repository builds toward a fully rendered 3D navigation and procedure engine—with boundary mapping, missed approach reconstruction, and holding pattern logic—built from the ground up with Python, Open3D, and GIS-enabled frameworks.
+
+https://e-klein-uscprojects.github.io/terminal-3d-airspace-sculptor/
