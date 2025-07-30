@@ -41,11 +41,13 @@
       };
 
       try {
-        // Sanity check: Is Cesium available?
         if (!Cesium || !Cesium.Viewer) {
           throw new Error("Cesium Viewer is not available.");
         }
         log("Cesium.js loaded.");
+
+        // 🔒 Fix: Inject your own token
+        Cesium.Ion.defaultAccessToken = "YOUR_ACCESS_TOKEN_HERE";
 
         const terrainProvider = await Cesium.createWorldTerrainAsync();
         log("Terrain provider loaded.");
@@ -72,7 +74,6 @@
         const glbModelUrl = "airspace.glb";
         log("Trying to load model: " + glbModelUrl);
 
-        // Retry logic if model fails
         let retries = 2;
         let modelLoaded = false;
 
@@ -85,11 +86,9 @@
               ),
               scale: 1.0,
             });
-
             viewer.scene.primitives.add(model);
             log(`Model loaded on attempt #${attempt}`);
             modelLoaded = true;
-
           } catch (error) {
             log(`Attempt #${attempt} failed to load GLB. Reason: ${error.message}`, true);
             if (attempt < retries) {
