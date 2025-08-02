@@ -45,4 +45,6 @@ For integration inquiries, enterprise evaluations, or technical correspondence, 
 Author: Ethan Klein  
 Affiliation: USC Viterbi School of Engineering  
 Contact: [linkedin.com/in/ethan-klein-561559238](https://linkedin.com/in/ethan-klein-561559238)  
-Project Initiated: January 2024
+Project Initiated: January 2024  
+Project Link: [Terminal 3D Airspace Sculptor](https://e-klein-uscprojects.github.io/terminal-3d-airspace-sculptor/)
+
