@@ -46,5 +46,10 @@ Author: Ethan Klein
 Affiliation: USC Viterbi School of Engineering  
 Contact: [linkedin.com/in/ethan-klein-561559238](https://linkedin.com/in/ethan-klein-561559238)  
 Project Initiated: January 2024  
+
+Problem Tackled: Current aviation systems lack intuitive, modular 3D visualization tools that support dynamic airspace planning.  
+Entrepreneurial Response: Terminal 3D was developed independently to address this gap through scalable, user-oriented design.  
+
 Project Link: [Terminal 3D Airspace Sculptor](https://e-klein-uscprojects.github.io/terminal-3d-airspace-sculptor/)
+
 
