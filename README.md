@@ -1,11 +1,49 @@
 # Terminal 3D Airspace Sculptor
 
-I am a strategic leader in aeronautical data intelligence, predictive analytics, and geospatial modeling, having served in both aviation operations and aerospace intelligence roles. This project reflects my continued pursuit of procedural clarity and spatial transparency across the national airspace system.
+I am the founder and principal developer of Terminal 3D Airspace Sculptor, an open-core platform initiated at the USC Viterbi School of Engineering. This tool was developed in direct response to a persistent challenge in aviation infrastructure design: the disconnect between geospatial modeling and CAD-based procedural alignment.
 
-The Terminal 3D Airspace Sculptor models controlled airspace volumes and terminal boundaries using ICAO definitions and OpenCities reference data. It applies vertical stratification logic and convex hull modeling to produce interactive representations of ADIZ, SUAS, and international sectors. My goal is not merely technical refinement, but operational accountability—ensuring flight planning, navigation, and air traffic coordination tools are built on reliable, open, and intelligent geospatial infrastructure.
+My academic and professional background—paired with a longstanding interest in controlled airspace design—has guided the architecture of Terminal 3D. Through successive development cycles, I have authored parametric sector modeling algorithms, implemented export pathways for OpenCities IFC and DXF formats, and built modular templates for IFR route planning. I am writing to formally present the framework and vision of this platform to technical partners and regulatory stakeholders invested in improving procedural accuracy and operational safety across aviation domains.
 
-Drawing on my experience as a commercial and agricultural pilot, my work in defense applications at Oracle, and my procedural data modeling for Maxar Technologies, this initiative aligns core geospatial expertise with the mission-critical requirements of aerospace safety and precision. My academic background in Communication Analytics from USC has enabled me to integrate sentiment, terrain, and system-level analytics to optimize operational decision-making.
+In addition to the free community edition of Terminal 3D, I have overseen the development of enterprise-grade modules designed to support regulatory compliance, streamline mission planning, and enable interoperability with industry-standard tools such as Bentley’s MicroStation. These licensed components include glideslope validation dashboards, obstacle profile analysis engines, real-time API synchronization, and tools for documentation generation across procedural workflows.
 
-Each module in this repository builds toward a fully rendered 3D navigation and procedure engine—with boundary mapping, missed approach reconstruction, and holding pattern logic—built from the ground up with Python, Open3D, and GIS-enabled frameworks.
+## What It Is
 
-https://e-klein-uscprojects.github.io/terminal-3d-airspace-sculptor/
+Terminal 3D Airspace Sculptor is a parametric modeling environment for controlled airspace, ICAO sectors, and instrument flight procedures. It leverages geospatial geometry, exportable assets, and modular logic blocks to simulate, validate, and visualize aviation procedures at the sector level.
+
+## Why It Matters
+
+There is a marked fragmentation between CAD environments used for procedure design and the geospatial platforms used for airspace visualization and analysis. Terminal 3D bridges this divide—synchronizing navaid placement, glidepath geometry, and obstruction modeling inside a unified system accessible to planners, regulators, and engineers.
+
+## Core Features (Free Community Edition)
+
+- Python-based procedural sculpting engine
+- Native support for OpenCities IFC format
+- DXF/OBJ export for cross-platform CAD usage
+- IFR procedure modeling templates
+
+## Enterprise Modules (Licensed)
+
+- MicroStation Integration Toolkit
+- Glideslope and Obstacle Validation Dashboards
+- Live API Sync for mission planning and ops alignment
+- Documentation utilities for regulatory compliance workflows
+
+## Use Cases
+
+- Air Navigation Service Providers validating IFR procedure geometry
+- Airport engineering teams defining sector boundaries and navaid alignment
+- Aerospace contractors evaluating obstruction clearance and site compatibility
+
+## Business Model
+
+Terminal 3D operates under an Open Core + Enterprise SaaS model. Community access is free for developers, researchers, and academic partners. Enterprise modules are licensed per project or offered via subscription for aviation authorities, consultants, and systems integrators.
+
+---
+
+For integration inquiries, enterprise evaluations, or technical correspondence, I welcome the opportunity to discuss this platform and its potential application to your mission.
+
+Author: Ethan Klein  
+Affiliation: USC Viterbi School of Engineering 
+Contact: linkedin.com/in/ethan-klein-561559238 
+Project Initiated: January 2024
+
