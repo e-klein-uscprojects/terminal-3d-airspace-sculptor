@@ -43,7 +43,6 @@ Terminal 3D operates under an Open Core + Enterprise SaaS model. Community acces
 For integration inquiries, enterprise evaluations, or technical correspondence, I welcome the opportunity to discuss this platform and its potential application to your mission.
 
 Author: Ethan Klein  
-Affiliation: USC Viterbi School of Engineering 
-Contact: linkedin.com/in/ethan-klein-561559238 
+Affiliation: USC Viterbi School of Engineering  
+Contact: [linkedin.com/in/ethan-klein-561559238](https://linkedin.com/in/ethan-klein-561559238)  
 Project Initiated: January 2024
-
