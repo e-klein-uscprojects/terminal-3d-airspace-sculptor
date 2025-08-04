@@ -7,7 +7,7 @@ From the outset, my goal has been to build a system that not only supports **tra
 **Real-World Relevance**  
 **Amazon’s Prime Air** initiative underscores the growing demand for **dynamic airspace modeling**—the very challenge **Terminal 3D** was designed to address. As **Amazon** expands its footprint in **drone logistics**, the need for **scalable**, **ICAO-compliant routing** and **procedural envelope simulation** becomes increasingly urgent. **Terminal 3D** aligns directly with this operational vision.
 
-To view **Amazon’s drone delivery system** in action, see: [Amazon's drone delivery program takes flight](https://www.youtube.com/watch?v=ThYhQQTgV4I)
+To view **Amazon’s drone delivery system** in action, see: [Amazon Prime Air's New Delivery Drone](https://www.youtube.com/watch?v=3HJtmx5f1Fc)
 
 During the development process, I authored a suite of modules that support both **community experimentation** and **enterprise deployment**. These include:
 
