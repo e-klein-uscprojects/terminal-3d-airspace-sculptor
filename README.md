@@ -1,4 +1,4 @@
-Terminal 3D Airspace Sculptor  
+Terminal 3D Airspace Sculptor
 
 I am the founder and principal developer of **Terminal 3D Airspace Sculptor**, a **geospatial modeling platform** initiated at the **USC Viterbi School of Engineering**. The project was developed in response to a persistent challenge in aviation infrastructure: the lack of **modular**, **interoperable tools** for visualizing and validating **structured airspace procedures** in three dimensions.
 
@@ -7,7 +7,7 @@ From the outset, my goal has been to build a system that not only supports **tra
 **Real-World Relevance**  
 **Amazon’s Prime Air** initiative underscores the growing demand for **dynamic airspace modeling**—the very challenge **Terminal 3D** was designed to address. As **Amazon** expands its footprint in **drone logistics**, the need for **scalable**, **ICAO-compliant routing** and **procedural envelope simulation** becomes increasingly urgent. **Terminal 3D** aligns directly with this operational vision.
 
-To view **Amazon’s drone delivery system** in action, see: **Amazon's drone delivery program takes flight**
+To view **Amazon’s drone delivery system** in action, see: [Amazon's drone delivery program takes flight](https://www.youtube.com/watch?v=ThYhQQTgV4I)
 
 During the development process, I authored a suite of modules that support both **community experimentation** and **enterprise deployment**. These include:
 
@@ -55,11 +55,10 @@ For **integration inquiries**, **enterprise evaluations**, or **technical corres
 
 **Author**: Ethan Klein  
 **Affiliation**: USC Viterbi School of Engineering  
-**Contact**: linkedin.com/in/ethan-klein-561559238  
+**Contact**: [linkedin.com/in/ethan-klein-561559238](https://www.linkedin.com/in/ethan-klein-561559238)  
 **Project Initiated**: January 2024
 
 **Problem Tackled**: Current aviation systems lack intuitive, modular 3D visualization tools that support dynamic airspace planning.  
 **Entrepreneurial Response**: **Terminal 3D** was developed independently to address this gap through **scalable**, **user-oriented design**.
 
 **Project Link**: Terminal 3D Airspace Sculptor
-
