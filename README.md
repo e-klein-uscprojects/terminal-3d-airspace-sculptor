@@ -49,6 +49,7 @@ There remains a significant fragmentation between the **CAD environments** used 
 - **Amazon Prime Air operations** requiring **dynamic airspace simulation**
 
 **Business Model**  
+
 **Terminal 3D** operates under an **Open Core + Enterprise SaaS model**. **Community access** is free for **developers**, **researchers**, and **academic partners**. **Enterprise modules** are licensed **per project** or offered via **subscription** for **aviation authorities**, **consultants**, and **systems integrators**.
 
 For **integration inquiries**, **enterprise evaluations**, or **technical correspondence**, I welcome the opportunity to discuss this platform and its potential application to your mission.
