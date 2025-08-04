@@ -11,6 +11,7 @@ During the development process, I authored a suite of modules that support both 
 * A real-time API synchronization layer for mission planning systems 
 * Validation dashboards for glideslope integrity and terrain proximity 
 * A pilot briefing console with immersive altitude annotation tools 
+
 Each module was designed to operate independently or as part of a larger procedural framework. The platform supports vertical stratification logic, convex hull rendering, and dynamic missed approach reconstruction—all built from the ground up using Open3D, GIS-enabled frameworks, and modular Python logic.
 
 Terminal 3D is offered under an Open Core + Enterprise SaaS model. The community edition is freely available to developers, researchers, and academic institutions. Licensed enterprise modules are available on a per-project basis or via subscription, depending on the scope and integration requirements.
