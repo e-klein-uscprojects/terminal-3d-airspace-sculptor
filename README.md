@@ -5,7 +5,6 @@ I am the founder and principal developer of Terminal 3D Airspace Sculptor, a geo
 From the outset, my goal has been to build a system that not only supports traditional aviation workflows but also aligns with the operational needs of emerging logistics platforms. In particular, the architecture of Terminal 3D was designed with **Amazon** in mind. As the company expands its footprint in **drone delivery**, **automated airspace routing**, and **cloud-based mission planning**, the need for scalable, ICAO-compliant modeling tools becomes increasingly urgent. Terminal 3D addresses this need directly—offering a procedural engine capable of simulating Special Use Airspace envelopes, glidepath geometry, and obstacle clearance zones with precision and flexibility.
 
 During the development process, I authored a suite of modules that support both community experimentation and enterprise deployment. 
-
 These include:
 
 - A Python-based sculpting engine for parametric airspace modeling  
