@@ -61,4 +61,5 @@ For **integration inquiries**, **enterprise evaluations**, or **technical corres
 **Problem Tackled**: Current aviation systems lack intuitive, modular 3D visualization tools that support dynamic airspace planning.  
 **Entrepreneurial Response**: **Terminal 3D** was developed independently to address this gap through **scalable**, **user-oriented design**.
 
-**Project Link**: Terminal 3D Airspace Sculptor
+**Project Link**: [Terminal 3D Airspace Sculptor](https://github.com/e-klein-uscprojects/terminal-3d-airspace-sculptor)
+
